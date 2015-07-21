@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<carcollection>
+  <car>
+    <make>DeLorean</make>
+    <model>Time Machine</model>
+    <year>1981</year>
+  </car>
+  <car>
+    <make>Cadillac</make>
+    <model>Ecto-1</model>
+    <year>1984</year>
+  </car>
+</carcollection>
