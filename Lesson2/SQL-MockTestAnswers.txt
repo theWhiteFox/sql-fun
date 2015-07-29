@@ -1,26 +1,53 @@
 // Request 1
 List the last name, first name and employee number of all employees that have a last name starting with M.
 
+SELECT e.Last_Name, e.First_Name, e.Employee_No 
+FROM Employees e
+WHERE e.Last_Name LIKE 'M%'
+
 // Request 2
 List the last name, first name and employee number of all programmers who were hired on or before 11 Feburary 1994 sorted in descending order of last name
 *HINT* JOIN Jobs
 
+SELECT Last_Name, First_Name, Employee_No, Hire_Date FROM Employees
+JOIN Jobs on Jobs.Job_ID = Employees.Job_ID
+WHERE Hire_Date <= '1994-02-11' AND Job_Title = 'Shipping Clerk'
+ORDER BY Last_Name DESC
+
 // Request 3
 List all the data for all jobs where the maximum salary is greater than 12000 sorted in ascending order of the maximum salary.
 
+SELECT * FROM Jobs WHERE Max_Salary > 12000 ORDER BY Max_Salary ASC
+
 // Request 4
 List all the data for all jobs where the minimum salary is less than or equal to 4500 sorted in descending order of the minimum salary.
+SELECT * FROM Jobs
+WHERE Min_Salary <= 4500
+ORDER BY Min_Salary DESC
 
 // Request 5
 List the department name, location, last name and salary of employees who work in location 1700 sorted in ascending order of department name.
 *HINT* JOIN Employees
 
+SELECT d.Department_Name, d.Location_ID, e.Last_Name, e.Annual_Salary 
+FROM Departments d
+JOIN Employees e ON d.Department_No = e.Department_No
+WHERE d.Location_ID = 1700
+ORDER BY d.Department_Name ASC
+
 // Request 6
 Which jobs are found in the Marketing and Accounting departments? 
 *HINT* JOIN Employees JOIN Jobs OR 
 
+SELECT DISTINCT Jobs.Job_Title FROM Departments
+JOIN Employees on Departments.Department_No = Employees.Department_No
+JOIN Jobs on Employees.Job_ID = Jobs.Job_ID
+WHERE Departments.Department_Name = 'Marketing' OR Departments.Department_Name = 'Accounting'
+
 // Request 7
 Show the total salaries figure for one week displayed with no decimal places.
+
+SELECT ROUND(SUM(Annual_Salary/52), 0) as Total_Monthly_Salary FROM Employees
 
 // Request 8
 Show the total number of jobs.
@@ -28,41 +55,79 @@ SELECT COUNT(Job_ID) FROM Jobs
 
 // Request 9
 List the department number, department name and the number of employees for each department that has less than 4 employees grouping by department number and department name.
-*HINT* JOIN Employees. The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.
+*HINT* JOIN Employees
+
+SELECT Departments.Department_No, Departments.Department_Name, Count(*) Employees FROM Departments
+JOIN Employees ON Departments.Department_No = Employees.Department_No
+GROUP BY Departments.Department_No, Departments.Department_Name 
+HAVING Count(*) < 4
+
+The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.
 
 // Request 10
 List the department number, department name and the number of employees for the department that has the lowest number of employees using appropriate grouping
 *HINT* JOIN Employees
 
+SELECT Departments.Department_No, Departments.Department_Name, COUNT(*) as Number_of_Employees FROM Departments
+Join Employees ON Employees.Department_No = Departments.Department_No 
+GROUP BY Departments.Department_No, Departments.Department_Name
+ORDER BY COUNT(*) ASC 
+
 // Request 11
 List the department number and name for all departments where no sales representatives work.
-*HINT* JOIN Employees JOIN Jobs
+
+SELECT DISTINCT departments.department_no, 
+                departments.department_name 
+FROM   departments 
+WHERE  departments.department_no NOT IN (SELECT DISTINCT department_no 
+                                         FROM   employees 
+                                         WHERE  employees.job_id LIKE '%SA_REP%' 
+                                        ); 
 
 // Request 12
 Add the following new job IT_ASST, IT Assistant, 5000, 8000
 
+INSERT INTO Jobs VALUES('IT_ASST', 'IT Assistant', 5000, 8000)
+
 // Request 13
 Update all the maximum salaries for jobs with an increase of 2000
+UPDATE Jobs
+SET Max_Salary += 2000
 
 // Request 14
 List all the data for jobs sorted in descending order of job id.
+SELECT * FROM Jobs
+ORDER BY Job_ID DESC
 
 // Request 15
 5 a) The job history for employee number 123 is no longer required. Delete this record.
   b) List all the data for job history sorted in descending order of employee number.
 
+DELETE FROM Job_History
+WHERE Employee_No = 102
+SELECT * FROM Job_History
+ORDER BY Employee_No ASC
+
 // Request 16
 Create a new view for clerks’s details only using all the fields from the employee table.
 *HINT* '%CLERK'
 
+CREATE VIEW ClerkInfo AS
+(
+SELECT * FROM Employees e
+WHERE Job_ID like '%CLERK'
+)
+
 // Request 17
 Show all the fields and all the clerks using the view for clerks sorted in descending order of employee number.
+SELECT * FROM ClerkInfo ORDER BY Employee_No ASC
 
 // Request 18
 Grant the authority to all other users to access the view for clecks for SELECT statements only.
+GRANT SELECT ON CleckInfo TO PUBLIC;
 
 // Request 19
 Create an index named LOC_POSTAL_CODE on the Postal Code in the locations table. Provide a printout showing that the index has been created.
-
+CREATE INDEX LOC_POSTAL_CODE ON Locations (Postal_Code)
 
 
