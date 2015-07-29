@@ -1,7 +1,9 @@
 // Request 1
 List the last name, first name and employee number of all employees that have a last name starting with M.
 
-SELECT e.Last_Name, e.First_Name, e.Employee_No 
+SELECT e.Last_Name, 
+       e.First_Name, 
+       e.Employee_No 
 FROM Employees e
 WHERE e.Last_Name LIKE 'M%'
 
@@ -21,7 +23,8 @@ SELECT * FROM Jobs WHERE Max_Salary > 12000 ORDER BY Max_Salary ASC
 
 // Request 4
 List all the data for all jobs where the minimum salary is less than or equal to 4500 sorted in descending order of the minimum salary.
-SELECT * FROM Jobs
+SELECT * 
+FROM Jobs
 WHERE Min_Salary <= 4500
 ORDER BY Min_Salary DESC
 
@@ -39,7 +42,8 @@ ORDER BY d.Department_Name ASC
 Which jobs are found in the Marketing and Accounting departments? 
 *HINT* JOIN Employees JOIN Jobs OR 
 
-SELECT DISTINCT Jobs.Job_Title FROM Departments
+SELECT DISTINCT Jobs.Job_Title 
+FROM Departments
 JOIN Employees on Departments.Department_No = Employees.Department_No
 JOIN Jobs on Employees.Job_ID = Jobs.Job_ID
 WHERE Departments.Department_Name = 'Marketing' OR Departments.Department_Name = 'Accounting'
@@ -57,7 +61,10 @@ SELECT COUNT(Job_ID) FROM Jobs
 List the department number, department name and the number of employees for each department that has less than 4 employees grouping by department number and department name.
 *HINT* JOIN Employees
 
-SELECT Departments.Department_No, Departments.Department_Name, Count(*) Employees FROM Departments
+SELECT Departments.Department_No, 
+       Departments.Department_Name, 
+       Count(*) Employees 
+FROM Departments
 JOIN Employees ON Departments.Department_No = Employees.Department_No
 GROUP BY Departments.Department_No, Departments.Department_Name 
 HAVING Count(*) < 4
@@ -68,7 +75,10 @@ The HAVING clause was added to SQL because the WHERE keyword could not be used w
 List the department number, department name and the number of employees for the department that has the lowest number of employees using appropriate grouping
 *HINT* JOIN Employees
 
-SELECT Departments.Department_No, Departments.Department_Name, COUNT(*) as Number_of_Employees FROM Departments
+SELECT Departments.Department_No, 
+       Departments.Department_Name, 
+       COUNT(*) as Number_of_Employees 
+FROM Departments
 Join Employees ON Employees.Department_No = Departments.Department_No 
 GROUP BY Departments.Department_No, Departments.Department_Name
 ORDER BY COUNT(*) ASC 
@@ -91,13 +101,11 @@ INSERT INTO Jobs VALUES('IT_ASST', 'IT Assistant', 5000, 8000)
 
 // Request 13
 Update all the maximum salaries for jobs with an increase of 2000
-UPDATE Jobs
-SET Max_Salary += 2000
+UPDATE Jobs SET Max_Salary += 2000
 
 // Request 14
 List all the data for jobs sorted in descending order of job id.
-SELECT * FROM Jobs
-ORDER BY Job_ID DESC
+SELECT * FROM Jobs ORDER BY Job_ID DESC
 
 // Request 15
 5 a) The job history for employee number 123 is no longer required. Delete this record.
