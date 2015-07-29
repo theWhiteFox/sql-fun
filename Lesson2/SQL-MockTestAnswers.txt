@@ -1,0 +1,68 @@
+// Request 1
+List the last name, first name and employee number of all employees that have a last name starting with M.
+
+// Request 2
+List the last name, first name and employee number of all programmers who were hired on or before 11 Feburary 1994 sorted in descending order of last name
+*HINT* JOIN Jobs
+
+// Request 3
+List all the data for all jobs where the maximum salary is greater than 12000 sorted in ascending order of the maximum salary.
+
+// Request 4
+List all the data for all jobs where the minimum salary is less than or equal to 4500 sorted in descending order of the minimum salary.
+
+// Request 5
+List the department name, location, last name and salary of employees who work in location 1700 sorted in ascending order of department name.
+*HINT* JOIN Employees
+
+// Request 6
+Which jobs are found in the Marketing and Accounting departments? 
+*HINT* JOIN Employees JOIN Jobs OR 
+
+// Request 7
+Show the total salaries figure for one week displayed with no decimal places.
+
+// Request 8
+Show the total number of jobs.
+SELECT COUNT(Job_ID) FROM Jobs
+
+// Request 9
+List the department number, department name and the number of employees for each department that has less than 4 employees grouping by department number and department name.
+*HINT* JOIN Employees. The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.
+
+// Request 10
+List the department number, department name and the number of employees for the department that has the lowest number of employees using appropriate grouping
+*HINT* JOIN Employees
+
+// Request 11
+List the department number and name for all departments where no sales representatives work.
+*HINT* JOIN Employees JOIN Jobs
+
+// Request 12
+Add the following new job IT_ASST, IT Assistant, 5000, 8000
+
+// Request 13
+Update all the maximum salaries for jobs with an increase of 2000
+
+// Request 14
+List all the data for jobs sorted in descending order of job id.
+
+// Request 15
+5 a) The job history for employee number 123 is no longer required. Delete this record.
+  b) List all the data for job history sorted in descending order of employee number.
+
+// Request 16
+Create a new view for clerks’s details only using all the fields from the employee table.
+*HINT* '%CLERK'
+
+// Request 17
+Show all the fields and all the clerks using the view for clerks sorted in descending order of employee number.
+
+// Request 18
+Grant the authority to all other users to access the view for clecks for SELECT statements only.
+
+// Request 19
+Create an index named LOC_POSTAL_CODE on the Postal Code in the locations table. Provide a printout showing that the index has been created.
+
+
+
