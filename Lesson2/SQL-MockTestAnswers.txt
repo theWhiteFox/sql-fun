@@ -11,7 +11,11 @@ WHERE e.Last_Name LIKE 'M%'
 List the last name, first name and employee number of all programmers who were hired on or before 11 Feburary 1994 sorted in descending order of last name
 *HINT* JOIN Jobs
 
-SELECT Last_Name, First_Name, Employee_No, Hire_Date FROM Employees
+SELECT Last_Name, 
+       First_Name, 
+       Employee_No,
+       Hire_Date 
+FROM Employees
 JOIN Jobs on Jobs.Job_ID = Employees.Job_ID
 WHERE Hire_Date <= '1994-02-11' AND Job_Title = 'Shipping Clerk'
 ORDER BY Last_Name DESC
@@ -32,7 +36,10 @@ ORDER BY Min_Salary DESC
 List the department name, location, last name and salary of employees who work in location 1700 sorted in ascending order of department name.
 *HINT* JOIN Employees
 
-SELECT d.Department_Name, d.Location_ID, e.Last_Name, e.Annual_Salary 
+SELECT d.Department_Name, 
+       d.Location_ID, 
+       e.Last_Name, 
+       e.Annual_Salary 
 FROM Departments d
 JOIN Employees e ON d.Department_No = e.Department_No
 WHERE d.Location_ID = 1700
