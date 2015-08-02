@@ -1,2 +1,10 @@
 # sql-fun
-- Basic CRUD
+- data types 
+- data integrity
+- CRUD
+- selecting records
+- aggregate functions
+- relationships
+- JOIN
+- databinding
+- XML
